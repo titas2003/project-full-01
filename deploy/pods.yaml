@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: project-01
+  labels:
+    app: project-01
+spec:
+  containers:
+    - name: database
+      image: mongo:latest
+      ports:
+        - containerPort: 27017
+      volumeMounts:
+        - name: db-vol 
+          mountPath: /data 
+  volumes:
+    - name: db-vol
+      hostPath:
+        path: /media/project-01/data
+        type: DirectoryOrCreate
